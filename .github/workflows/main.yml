@@ -1,0 +1,14 @@
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job that shows how to use composit actions
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: actions/sample-composite-action@v1
+        with:
+          project-info: 'Sample project name here'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
